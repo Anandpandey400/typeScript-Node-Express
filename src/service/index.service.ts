@@ -1,6 +1,8 @@
-export const CheckIndex = async () => {
+import { Test } from "../types/index.types";
+
+export const CheckIndex = async (test: Test) => {
     try {
-        return [{ id: 1, name: "Anand", email: "anand@test.com" }];
+        return test;
     } catch (error) {
         console.error("Error fetching inventory:", error);
         throw error;

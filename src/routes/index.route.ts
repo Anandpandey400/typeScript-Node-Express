@@ -4,6 +4,6 @@ import { checkIndexData } from "../controller/index.controller";
 
 const router = Router();
 
-router.get("/checkIndex",checkIndexData);
+router.post("/checkIndex",checkIndexData);
 
 export default router;

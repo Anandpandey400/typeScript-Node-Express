@@ -3,7 +3,9 @@ import { CheckIndex } from "../service/index.service";
 
 export async function checkIndexData(req: Request, res: Response): Promise<void> {
     try {
-        const items = await CheckIndex();
+        const items = await CheckIndex(
+            { id: 1, name: "Sample Test" }
+        );
         res.status(200).json({
             message: "Data fetched successfully",
             data: items,
