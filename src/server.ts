@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import globalRoute from "./globalRoute";
+import { getDbPool } from "./config/dbconfig";
 dotenv.config();
 
 const app = express();
@@ -40,6 +41,7 @@ app.use("/api", globalRoute);
 
 async function startServer() {
     try {
+        await getDbPool();
         app.listen(PORT, () => {
             console.log(`Database and sever running 🚀`);
         });
