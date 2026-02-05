@@ -41,7 +41,7 @@ app.use("/api", globalRoute);
 
 async function startServer() {
     try {
-        await getDbPool();
+//        await getDbPool();
         app.listen(PORT, () => {
             console.log(`Database and sever running 🚀`);
         });
