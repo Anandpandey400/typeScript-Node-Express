@@ -7,7 +7,7 @@ import { authMiddleware } from "../middleware/auth.middleware";
 
 const router = Router();
 
-router.post("/checkIndex", authMiddleware, checkIndexData);
+router.post("/checkIndex",  checkIndexData);
 router.post("/createIndex", createIndexData);
 
 export default router;

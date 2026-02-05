@@ -3,29 +3,31 @@ import dotenv from "dotenv";
 import cors from "cors";
 import globalRoute from "./globalRoute";
 import { getDbPool } from "./config/dbconfig";
+import { apiRateLimiter } from "./middleware/rate-limit.middleware";
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-/* -------------------- MIDDLEWARE (ORDER MATTERS) -------------------- */
 
 // parse JSON bodies
 app.use(express.json());
+//limiter
+app.use(apiRateLimiter); 
 
-// parse urlencoded bodies (for form submissions)
 app.use(express.urlencoded({ extended: true }));
 
-// optional but recommended
+// cors
 app.use(cors());
 
-/* -------------------- DEBUG LOGGER (TEMPORARY) -------------------- */
+//logger
 app.use((req, _res, next) => {
     // console.log("📦 Body:", req.body);
     next();
 });
 
-/* -------------------- ROUTES -------------------- */
+
+//ROutes
 
 // health check
 app.get("/health", (_req: Request, res: Response) => {
@@ -37,8 +39,7 @@ app.use("/api", globalRoute);
 
 
 
-/* -------------------- SERVER START -------------------- */
-
+//main server
 async function startServer() {
     try {
 //        await getDbPool();
