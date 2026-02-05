@@ -20,9 +20,7 @@
     "express-rate-limit": "^8.2.1",
     "iconv-lite": "^0.7.2",
     "jsonwebtoken": "^9.0.3",
-    "mssql": "^12.2.0",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "mssql": "^12.2.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",

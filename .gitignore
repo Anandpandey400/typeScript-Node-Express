@@ -1,0 +1,12 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+
+# Env
+.env
+
+# Build
+dist/
+build/
