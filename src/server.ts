@@ -46,7 +46,7 @@ async function startServer() {
             console.log(`Sever running at http://localhost:${PORT}/health 🚀`);
         });
     } catch (error) {
-        console.error("❌ Failed to connect to database ", error);
+        console.error("❌ Failed to Start Server ", error);
         process.exit(1);
     }
 }
