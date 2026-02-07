@@ -26,7 +26,6 @@ app.use((req, _res, next) => {
     next();
 });
 
-
 //ROutes
 
 // health check
