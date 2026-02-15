@@ -26,17 +26,17 @@ jobs:
 
       - name: Deploy Files
         run: |
-          rm -rf /var/www/type-exp/*
-          cp -r . /var/www/type-exp/
+          rsync -av --exclude='.git' ./ /var/www/type-exp/
           cd /var/www/type-exp
           npm install --production
 
 
+
       - name: Restart App with PM2
         run: |
-          cd /var/www/type-exp/dist
+          cd /var/www/type-exp
           pm2 delete type-exp || true
-          pm2 start server.js --name type-exp
+          pm2 start dist/server.js --name type-exp
           pm2 save
 
 
