@@ -30,7 +30,7 @@ app.use((req, _res, next) => {
 
 // health check
 app.get("/health", (_req: Request, res: Response) => {
-    res.send("Server is running 🚀");
+    res.send("Server is running heaalthy 🚀");
 });
 
 //  routes
