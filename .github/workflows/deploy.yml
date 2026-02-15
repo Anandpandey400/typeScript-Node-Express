@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: ‘18’
+          node-version: 20
 
       - name: Install Dependencies
         run: npm install
@@ -24,13 +24,20 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      - name: Copy Build Files
+      - name: Deploy Files
         run: |
-          rm -rf /var/www/myapp/*
-          cp -r dist/* /var/www/myapp/
+          rsync -av --exclude='.git' ./ /var/www/type-exp/
+          cd /var/www/type-exp
+          npm install --production
+
+
 
       - name: Restart App with PM2
         run: |
-          pm2 delete myapp || true
-          pm2 start /var/www/myapp/index.js --name myapp
+          cd /var/www/type-exp
+          pm2 delete type-exp || true
+          pm2 start dist/server.js --name type-exp
           pm2 save
+
+
+
