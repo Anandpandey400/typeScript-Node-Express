@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CheckIndex, createIndex } from "../service/index.service";
+import { CheckIndex, checkIndexWithId, createIndex } from "../service/index.service";
 
 export async function checkIndexData(
   req: Request,
@@ -26,6 +26,23 @@ export async function createIndexData(
     res.status(200).json({
       message: "Token created successfully",
       data: items,
+    });
+  } catch (error) {
+    console.error("Error creating token:", error);
+    res.status(500).json({ message: "Failed to create token" });
+  }
+}
+
+export async function fetchDataById(
+  req: Request,
+  res: Response,
+): Promise<void> {
+  try {
+    const {id} = req.body
+    const resData = await checkIndexWithId(id)
+    res.status(200).json({
+      message: "Data here",
+      data: resData,
     });
   } catch (error) {
     console.error("Error creating token:", error);

@@ -4,6 +4,7 @@ import cors from "cors";
 import globalRoute from "./globalRoute";
 import { getDbPool } from "./config/dbconfig";
 import { apiRateLimiter } from "./middleware/rate-limit.middleware";
+import { connectRedis } from "./config/redis";
 dotenv.config();
 
 const app = express();
@@ -41,6 +42,7 @@ app.use("/api", globalRoute);
 //main server
 async function startServer() {
     try {
+         await connectRedis()
 //        await getDbPool();
         app.listen(PORT, () => {
             console.log(`Sever running at http://localhost:${PORT}/health 🚀`);
