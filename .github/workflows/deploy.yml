@@ -28,9 +28,12 @@ jobs:
         run: |
           rm -rf /var/www/type-exp/*
           cp -r dist/* /var/www/type-exp/
+           cd /var/www/type-exp
+           npm install --production
 
       - name: Restart App with PM2
         run: |
           pm2 delete type-exp || true
-          pm2 start /var/www/type-exp/server.js --name type-exp
+          pm2 start dist/server.js --name type-exp
           pm2 save
+
